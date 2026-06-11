@@ -52,9 +52,14 @@
         linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
       background-size: 60px 60px;
       mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
     }
 
-    /* ── LAYOUT ── */
+    /* ── VIEWS ── */
+    #loginView  { display: block; }
+    #dashView   { display: none; }
+
+    /* ── LOGIN LAYOUT ── */
     .shell {
       position: relative; z-index: 1;
       min-height: 100vh;
@@ -83,7 +88,7 @@
       box-shadow: 0 4px 20px rgba(201,168,76,.35);
     }
     .logo-text { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; letter-spacing: .01em; }
-    .logo-sub { font-size: .7rem; color: var(--slate); letter-spacing: .12em; text-transform: uppercase; margin-top: 1px; }
+    .logo-sub  { font-size: .7rem; color: var(--slate); letter-spacing: .12em; text-transform: uppercase; margin-top: 1px; }
 
     nav { display: flex; align-items: center; gap: 32px; }
     nav a {
@@ -96,11 +101,10 @@
       border: 1px solid rgba(201,168,76,.4);
       color: var(--gold-lt); font-size: .8rem; font-weight: 500;
       opacity: 1 !important;
-      transition: background .2s, border-color .2s;
     }
     .nav-badge:hover { background: rgba(201,168,76,.1); border-color: var(--gold); }
 
-    /* ── HERO (left) ── */
+    /* ── HERO ── */
     .hero {
       grid-column: 1;
       display: flex; flex-direction: column; justify-content: center;
@@ -112,52 +116,43 @@
       font-size: .72rem; letter-spacing: .18em; text-transform: uppercase;
       color: var(--gold-lt); font-weight: 500; margin-bottom: 28px;
     }
-    .eyebrow::before {
-      content: ''; width: 28px; height: 1px; background: var(--gold-lt);
-    }
+    .eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--gold-lt); }
     h1 {
       font-family: 'Playfair Display', serif;
       font-size: clamp(2.4rem, 3.8vw, 3.6rem);
-      font-weight: 700; line-height: 1.15;
-      letter-spacing: -.01em;
+      font-weight: 700; line-height: 1.15; letter-spacing: -.01em;
       margin-bottom: 24px;
     }
     h1 em { font-style: italic; color: var(--gold-lt); }
     .hero-desc {
       font-size: 1.05rem; color: var(--mist); line-height: 1.75;
-      max-width: 500px; margin-bottom: 48px;
-      font-weight: 300;
+      max-width: 500px; margin-bottom: 48px; font-weight: 300;
     }
 
-    /* stats row */
+    /* stats */
     .stats { display: flex; gap: 40px; margin-bottom: 52px; }
-    .stat-item {}
     .stat-val {
       font-family: 'DM Mono', monospace;
-      font-size: 1.9rem; font-weight: 500;
-      color: var(--white);
-      line-height: 1;
+      font-size: 1.9rem; font-weight: 500; color: var(--white); line-height: 1;
     }
     .stat-val span { font-size: 1rem; color: var(--gold-lt); margin-left: 2px; }
     .stat-lbl { font-size: .75rem; color: var(--slate); text-transform: uppercase; letter-spacing: .1em; margin-top: 5px; }
     .stat-divider { width: 1px; background: rgba(255,255,255,.1); align-self: stretch; }
 
-    /* module chips */
+    /* chips */
     .modules-label { font-size: .72rem; text-transform: uppercase; letter-spacing: .12em; color: var(--slate); margin-bottom: 14px; }
     .chips { display: flex; flex-wrap: wrap; gap: 10px; }
     .chip {
       display: flex; align-items: center; gap: 7px;
       padding: 7px 14px; border-radius: 6px;
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.08);
-      font-size: .8rem; color: var(--mist);
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+      font-size: .8rem; color: var(--mist); cursor: default;
       transition: background .2s, border-color .2s;
-      cursor: default;
     }
     .chip:hover { background: rgba(36,82,201,.18); border-color: rgba(36,82,201,.5); color: #9db5f5; }
     .chip-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
 
-    /* ── LOGIN PANEL (right) ── */
+    /* ── LOGIN PANEL ── */
     .panel-wrap {
       grid-column: 2;
       display: flex; align-items: center; justify-content: center;
@@ -177,21 +172,14 @@
       from { opacity: 0; transform: translateY(24px); }
       to   { opacity: 1; transform: translateY(0); }
     }
+    .panel-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 6px; }
+    .panel-sub   { font-size: .85rem; color: var(--slate); margin-bottom: 28px; }
 
-    .panel-head { margin-bottom: 32px; }
-    .panel-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem; font-weight: 700;
-      margin-bottom: 6px;
-    }
-    .panel-sub { font-size: .85rem; color: var(--slate); }
-
-    /* role selector */
+    /* role tabs */
     .role-tabs {
       display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 6px; margin-bottom: 28px;
-      background: rgba(0,0,0,.25);
-      padding: 5px; border-radius: 10px;
+      gap: 6px; margin-bottom: 24px;
+      background: rgba(0,0,0,.25); padding: 5px; border-radius: 10px;
     }
     .role-tab {
       padding: 8px 4px; border-radius: 7px; border: none;
@@ -199,62 +187,80 @@
       font-family: 'DM Sans', sans-serif; font-size: .78rem; font-weight: 500;
       cursor: pointer; transition: all .2s; text-align: center;
     }
-    .role-tab.active {
-      background: var(--ink-3);
-      color: var(--white);
-      box-shadow: 0 2px 8px rgba(0,0,0,.35);
+    .role-tab.active { background: var(--ink-3); color: var(--white); box-shadow: 0 2px 8px rgba(0,0,0,.35); }
+
+    /* demo creds */
+    .demo-creds {
+      background: rgba(201,168,76,.06);
+      border: 1px solid rgba(201,168,76,.2);
+      border-radius: 10px; padding: 14px 16px; margin-bottom: 20px;
     }
+    .demo-creds-title { font-size: .7rem; text-transform: uppercase; letter-spacing: .12em; color: var(--gold-lt); margin-bottom: 10px; font-weight: 500; }
+    .cred-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 6px 0; cursor: pointer;
+    }
+    .cred-row:not(:last-child) { border-bottom: 1px solid rgba(255,255,255,.05); }
+    .cred-row:hover .cred-role { color: var(--white); }
+    .cred-role { font-size: .78rem; color: var(--mist); font-weight: 500; }
+    .cred-val  { font-size: .72rem; color: var(--slate); font-family: 'DM Mono', monospace; margin-left: 8px; }
+    .cred-use  {
+      font-size: .7rem; background: rgba(201,168,76,.15);
+      border: 1px solid rgba(201,168,76,.3); border-radius: 4px;
+      color: var(--gold-lt); padding: 2px 8px; cursor: pointer;
+      white-space: nowrap; transition: background .15s;
+    }
+    .cred-use:hover { background: rgba(201,168,76,.3); }
+
+    /* alert banners */
+    .alert {
+      border-radius: 8px; padding: 10px 14px;
+      font-size: .82rem; margin-bottom: 16px; display: none;
+    }
+    .alert.show { display: block; }
+    .alert-error   { background: rgba(217,79,79,.15); border: 1px solid rgba(217,79,79,.4); color: #f08080; }
+    .alert-success { background: rgba(26,158,110,.15); border: 1px solid rgba(26,158,110,.4); color: #5dd9a9; }
 
     /* form */
     .field { margin-bottom: 18px; }
     label { display: block; font-size: .78rem; color: var(--mist); margin-bottom: 7px; font-weight: 500; letter-spacing: .03em; }
-    .input-wrap { position: relative; }
-    .input-icon {
-      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
-      color: var(--slate); font-size: .9rem; pointer-events: none;
-    }
-    input[type="text"], input[type="password"], input[type="email"] {
-      width: 100%; padding: 11px 14px 11px 38px;
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 9px;
-      color: var(--white); font-family: 'DM Sans', sans-serif; font-size: .9rem;
-      outline: none; transition: border-color .2s, background .2s;
-    }
-    input::placeholder { color: var(--ink-3); }
-    input:focus {
-      border-color: rgba(36,82,201,.7);
-      background: rgba(36,82,201,.08);
-    }
     .field-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 7px; }
     .field-row label { margin-bottom: 0; }
-    .forgot { font-size: .75rem; color: var(--gold-lt); text-decoration: none; opacity: .8; }
+    .forgot { font-size: .75rem; color: var(--gold-lt); background: none; border: none; cursor: pointer; opacity: .8; }
     .forgot:hover { opacity: 1; }
+    .input-wrap { position: relative; }
+    .input-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--slate); font-size: .9rem; pointer-events: none; }
+    .inp {
+      width: 100%; padding: 11px 14px 11px 38px;
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 9px; color: var(--white);
+      font-family: 'DM Sans', sans-serif; font-size: .9rem;
+      outline: none; transition: border-color .2s, background .2s;
+    }
+    .inp::placeholder { color: var(--ink-3); }
+    .inp:focus { border-color: rgba(36,82,201,.7); background: rgba(36,82,201,.08); }
+    .inp.err   { border-color: var(--red) !important; background: rgba(217,79,79,.08) !important; }
 
     /* checkbox */
     .checkbox-row { display: flex; align-items: center; gap: 9px; margin-bottom: 24px; }
     .checkbox-row input[type="checkbox"] { accent-color: var(--accent); width: 15px; height: 15px; cursor: pointer; }
     .checkbox-row label { font-size: .8rem; color: var(--slate); margin: 0; font-weight: 400; cursor: pointer; }
 
-    /* submit */
+    /* submit btn */
     .btn-login {
       width: 100%; padding: 13px;
       background: linear-gradient(135deg, var(--accent), var(--accent-lt));
       border: none; border-radius: 10px;
       color: #fff; font-family: 'DM Sans', sans-serif;
-      font-size: .95rem; font-weight: 600;
-      cursor: pointer; letter-spacing: .02em;
+      font-size: .95rem; font-weight: 600; cursor: pointer; letter-spacing: .02em;
       box-shadow: 0 6px 24px rgba(36,82,201,.45);
-      transition: transform .15s, box-shadow .2s;
+      transition: transform .15s, box-shadow .2s, opacity .2s;
       position: relative; overflow: hidden;
     }
-    .btn-login::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(rgba(255,255,255,.12), transparent);
-      pointer-events: none;
-    }
-    .btn-login:hover { transform: translateY(-1px); box-shadow: 0 10px 30px rgba(36,82,201,.55); }
-    .btn-login:active { transform: translateY(0); }
+    .btn-login::after { content: ''; position: absolute; inset: 0; background: linear-gradient(rgba(255,255,255,.12), transparent); pointer-events: none; }
+    .btn-login:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 10px 30px rgba(36,82,201,.55); }
+    .btn-login:active:not(:disabled) { transform: translateY(0); }
+    .btn-login:disabled { opacity: .6; cursor: not-allowed; }
 
     /* divider */
     .divider { display: flex; align-items: center; gap: 12px; margin: 22px 0; }
@@ -262,7 +268,7 @@
     .divider span { font-size: .72rem; color: var(--slate); text-transform: uppercase; letter-spacing: .1em; }
 
     /* status pills */
-    .status-row { display: flex; gap: 8px; margin-top: 22px; }
+    .status-row { display: flex; gap: 8px; margin-top: 4px; }
     .status-pill {
       flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px;
       padding: 8px 6px; border-radius: 7px;
@@ -287,8 +293,8 @@
 
     /* ── TICKER ── */
     .ticker-bar {
-      position: fixed; bottom: 0; left: 0; right: 0; z-index: 10;
-      background: rgba(10,15,30,.9);
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(10,15,30,.92);
       border-top: 1px solid rgba(255,255,255,.07);
       padding: 8px 0;
       backdrop-filter: blur(10px);
@@ -299,20 +305,133 @@
       animation: ticker 30s linear infinite;
       white-space: nowrap;
     }
-    @keyframes ticker {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-    .ticker-item {
-      display: flex; align-items: center; gap: 10px;
-      font-family: 'DM Mono', monospace; font-size: .72rem;
-      color: var(--slate);
-    }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .ticker-item { display: flex; align-items: center; gap: 10px; font-family: 'DM Mono', monospace; font-size: .72rem; color: var(--slate); }
+    .ticker-item .t-name { color: var(--mist); font-weight: 500; }
     .ticker-item .up   { color: var(--green); }
     .ticker-item .down { color: var(--red);   }
-    .ticker-item .name { color: var(--mist); font-weight: 500; }
 
-    /* ── ANIMATIONS ── */
+    /* ── DASHBOARD ── */
+    .dash-shell {
+      position: relative; z-index: 1;
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+    .dash-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 48px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      background: rgba(10,15,30,.6);
+      backdrop-filter: blur(16px);
+      position: sticky; top: 0; z-index: 50;
+    }
+    .dash-logo { display: flex; align-items: center; gap: 14px; }
+    .dash-logo-icon {
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dk));
+      border-radius: 9px; display: grid; place-items: center; font-size: 16px;
+    }
+    .dash-logo-text { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; }
+    .dash-user-info { display: flex; align-items: center; gap: 12px; }
+    .dash-role-badge {
+      padding: 5px 14px; border-radius: 6px;
+      background: rgba(36,82,201,.2); border: 1px solid rgba(36,82,201,.4);
+      color: #9db5f5; font-size: .78rem; font-weight: 500;
+    }
+    .dash-role-badge.role-manager { background: rgba(201,168,76,.15); border-color: rgba(201,168,76,.4); color: var(--gold-lt); }
+    .dash-role-badge.role-teller  { background: rgba(26,158,110,.15); border-color: rgba(26,158,110,.4); color: #5dd9a9; }
+    .btn-logout {
+      padding: 8px 18px; border-radius: 8px;
+      border: 1px solid rgba(255,255,255,.15); background: transparent;
+      color: var(--mist); font-family: 'DM Sans', sans-serif; font-size: .82rem;
+      cursor: pointer; transition: background .2s, border-color .2s;
+    }
+    .btn-logout:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.3); }
+
+    /* dash body */
+    .dash-body { padding: 36px 48px; }
+    .dash-welcome { margin-bottom: 32px; }
+    .dash-welcome-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem; font-weight: 700; margin-bottom: 4px;
+    }
+    .dash-welcome-meta { font-size: .85rem; color: var(--slate); }
+
+    /* KPI cards */
+    .kpi-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 16px; margin-bottom: 36px;
+    }
+    .kpi-card {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 14px; padding: 22px 20px;
+      transition: border-color .2s, background .2s;
+    }
+    .kpi-card:hover { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.15); }
+    .kpi-val { font-family: 'DM Mono', monospace; font-size: 1.7rem; font-weight: 500; margin-bottom: 4px; }
+    .kpi-label { font-size: .75rem; color: var(--slate); text-transform: uppercase; letter-spacing: .08em; }
+    .kpi-change { font-size: .78rem; margin-top: 8px; }
+    .kpi-up   { color: var(--green); }
+    .kpi-down { color: var(--red); }
+
+    /* section label */
+    .section-label {
+      font-size: .72rem; text-transform: uppercase; letter-spacing: .14em;
+      color: var(--slate); margin-bottom: 16px; font-weight: 500;
+    }
+
+    /* module grid */
+    .module-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 14px; margin-bottom: 36px;
+    }
+    .module-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 12px; padding: 20px 18px;
+      cursor: pointer; transition: background .2s, border-color .2s, transform .15s;
+    }
+    .module-card:hover { background: rgba(36,82,201,.14); border-color: rgba(36,82,201,.45); transform: translateY(-2px); }
+    .module-card:active { transform: translateY(0); }
+    .module-icon { font-size: 1.5rem; margin-bottom: 10px; }
+    .module-name { font-size: .9rem; font-weight: 500; color: var(--mist); margin-bottom: 4px; }
+    .module-desc { font-size: .75rem; color: var(--slate); line-height: 1.5; }
+
+    /* activity / quick actions */
+    .two-col { display: grid; grid-template-columns: 1fr 340px; gap: 20px; }
+    .dash-panel {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 14px; padding: 24px;
+    }
+    .dp-title { font-size: .9rem; font-weight: 500; color: var(--mist); margin-bottom: 18px; }
+
+    /* activity list */
+    .activity-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+    .activity-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .a-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+    .a-text { font-size: .82rem; color: var(--mist); line-height: 1.5; }
+    .a-time { font-size: .72rem; color: var(--slate); margin-top: 2px; }
+
+    /* quick actions */
+    .qa-btn {
+      display: flex; align-items: center; gap: 10px;
+      width: 100%; padding: 11px 14px; margin-bottom: 8px;
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+      border-radius: 9px; color: var(--mist);
+      font-family: 'DM Sans', sans-serif; font-size: .85rem;
+      cursor: pointer; text-align: left;
+      transition: background .2s, border-color .2s;
+    }
+    .qa-btn:hover { background: rgba(36,82,201,.18); border-color: rgba(36,82,201,.4); color: #9db5f5; }
+    .qa-btn:last-child { margin-bottom: 0; }
+    .qa-icon { font-size: 1rem; }
+
+    /* ── HERO ANIMATIONS ── */
     .hero > * { animation: fadeUp .6s cubic-bezier(.22,1,.36,1) both; }
     .hero > *:nth-child(1) { animation-delay: .05s; }
     .hero > *:nth-child(2) { animation-delay: .12s; }
@@ -320,14 +439,16 @@
     .hero > *:nth-child(4) { animation-delay: .24s; }
     .hero > *:nth-child(5) { animation-delay: .30s; }
     .hero > *:nth-child(6) { animation-delay: .36s; }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
     /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .kpi-grid    { grid-template-columns: repeat(2, 1fr); }
+      .module-grid { grid-template-columns: repeat(2, 1fr); }
+      .two-col     { grid-template-columns: 1fr; }
+    }
     @media (max-width: 900px) {
-      .shell { grid-template-columns: 1fr; grid-template-rows: auto auto 1fr auto; }
+      .shell { grid-template-columns: 1fr; }
       header { padding: 18px 24px; }
       nav a:not(.nav-badge) { display: none; }
       .hero { grid-column: 1; padding: 40px 24px 20px; max-width: 100%; }
@@ -335,6 +456,12 @@
       .stats { gap: 24px; }
       .panel-wrap { grid-column: 1; padding: 20px 24px 80px; }
       footer { padding: 16px 24px; flex-direction: column; gap: 10px; text-align: center; }
+      .dash-header { padding: 16px 24px; }
+      .dash-body   { padding: 24px 20px; }
+    }
+    @media (max-width: 600px) {
+      .kpi-grid    { grid-template-columns: 1fr 1fr; }
+      .module-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -342,100 +469,127 @@
 
 <div class="bg"><div class="grid-lines"></div></div>
 
-<div class="shell">
+<!-- ════════════════════════════════════════════
+     LOGIN VIEW
+════════════════════════════════════════════ -->
+<div id="loginView">
+  <div class="shell">
 
-  <!-- HEADER -->
-  <header>
-    <a class="logo" href="#">
-      <div class="logo-icon">🏦</div>
-      <div>
-        <div class="logo-text">BankingERP</div>
-        <div class="logo-sub">Enterprise Platform</div>
-      </div>
-    </a>
-    <nav>
-      <a href="#">Modules</a>
-      <a href="#">Reports</a>
-      <a href="#">API Docs</a>
-      <a href="https://github.com/alok8412/BankingERP" class="nav-badge">GitHub ↗</a>
-    </nav>
-  </header>
+    <!-- HEADER -->
+    <header>
+      <a class="logo" href="#">
+        <div class="logo-icon">🏦</div>
+        <div>
+          <div class="logo-text">BankingERP</div>
+          <div class="logo-sub">Enterprise Platform</div>
+        </div>
+      </a>
+      <nav>
+        <a href="#">Modules</a>
+        <a href="#">Reports</a>
+        <a href="#">API Docs</a>
+        <a href="https://github.com/alok8412/BankingERP" class="nav-badge" target="_blank" rel="noopener">GitHub ↗</a>
+      </nav>
+    </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="eyebrow">Core Banking System v2.0</div>
-    <h1>Banking operations,<br/><em>unified</em> and precise.</h1>
-    <p class="hero-desc">
-      A full-stack ERP built for financial institutions — managing customers, accounts,
-      transactions, loans, payroll, and compliance from a single, secure platform.
-    </p>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="eyebrow">Core Banking System v2.0</div>
+      <h1>Banking operations,<br/><em>unified</em> and precise.</h1>
+      <p class="hero-desc">
+        A full-stack ERP built for financial institutions — managing customers, accounts,
+        transactions, loans, payroll, and compliance from a single, secure platform.
+      </p>
 
-    <div class="stats">
-      <div class="stat-item">
-        <div class="stat-val">9<span>+</span></div>
-        <div class="stat-lbl">Modules</div>
+      <div class="stats">
+        <div class="stat-item">
+          <div class="stat-val">9<span>+</span></div>
+          <div class="stat-lbl">Modules</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-val">10<span>+</span></div>
+          <div class="stat-lbl">Entities</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-val">REST<span> API</span></div>
+          <div class="stat-lbl">Swagger Ready</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-val">RBAC</div>
+          <div class="stat-lbl">Role Security</div>
+        </div>
       </div>
-      <div class="stat-divider"></div>
-      <div class="stat-item">
-        <div class="stat-val">10<span>+</span></div>
-        <div class="stat-lbl">Entities</div>
-      </div>
-      <div class="stat-divider"></div>
-      <div class="stat-item">
-        <div class="stat-val">REST<span> API</span></div>
-        <div class="stat-lbl">Swagger Ready</div>
-      </div>
-      <div class="stat-divider"></div>
-      <div class="stat-item">
-        <div class="stat-val">RBAC</div>
-        <div class="stat-lbl">Role Security</div>
-      </div>
-    </div>
 
-    <div class="modules-label">Active Modules</div>
-    <div class="chips">
-      <div class="chip"><div class="chip-dot"></div>Customer KYC</div>
-      <div class="chip"><div class="chip-dot"></div>Accounts</div>
-      <div class="chip"><div class="chip-dot"></div>Transactions</div>
-      <div class="chip"><div class="chip-dot"></div>Loans & EMI</div>
-      <div class="chip"><div class="chip-dot"></div>HR & Payroll</div>
-      <div class="chip"><div class="chip-dot"></div>Reports</div>
-      <div class="chip"><div class="chip-dot"></div>Audit Trail</div>
-      <div class="chip"><div class="chip-dot"></div>Notifications</div>
-    </div>
-  </section>
+      <div class="modules-label">Active Modules</div>
+      <div class="chips">
+        <div class="chip"><div class="chip-dot"></div>Customer KYC</div>
+        <div class="chip"><div class="chip-dot"></div>Accounts</div>
+        <div class="chip"><div class="chip-dot"></div>Transactions</div>
+        <div class="chip"><div class="chip-dot"></div>Loans & EMI</div>
+        <div class="chip"><div class="chip-dot"></div>HR & Payroll</div>
+        <div class="chip"><div class="chip-dot"></div>Reports</div>
+        <div class="chip"><div class="chip-dot"></div>Audit Trail</div>
+        <div class="chip"><div class="chip-dot"></div>Notifications</div>
+      </div>
+    </section>
 
-  <!-- LOGIN PANEL -->
-  <div class="panel-wrap">
-    <div class="panel">
-      <div class="panel-head">
+    <!-- LOGIN PANEL -->
+    <div class="panel-wrap">
+      <div class="panel">
         <div class="panel-title">Secure Sign In</div>
         <div class="panel-sub">Access your BankingERP dashboard</div>
-      </div>
 
-      <div class="role-tabs">
-        <button class="role-tab active" onclick="setRole(this)">Admin</button>
-        <button class="role-tab" onclick="setRole(this)">Manager</button>
-        <button class="role-tab" onclick="setRole(this)">Teller</button>
-      </div>
+        <!-- Role selector -->
+        <div class="role-tabs">
+          <button class="role-tab active" onclick="setRole(this,'Admin')">Admin</button>
+          <button class="role-tab" onclick="setRole(this,'Manager')">Manager</button>
+          <button class="role-tab" onclick="setRole(this,'Teller')">Teller</button>
+        </div>
 
-      <form onsubmit="handleLogin(event)">
+        <!-- Demo credentials -->
+        <div class="demo-creds">
+          <div class="demo-creds-title">Demo credentials — click to autofill</div>
+          <div class="cred-row" onclick="fillCreds('admin','Admin@123','Admin')">
+            <span class="cred-role">Admin</span>
+            <span class="cred-val">admin / Admin@123</span>
+            <button class="cred-use" onclick="event.stopPropagation();fillCreds('admin','Admin@123','Admin')">Use</button>
+          </div>
+          <div class="cred-row" onclick="fillCreds('manager','Mgr@456','Manager')">
+            <span class="cred-role">Manager</span>
+            <span class="cred-val">manager / Mgr@456</span>
+            <button class="cred-use" onclick="event.stopPropagation();fillCreds('manager','Mgr@456','Manager')">Use</button>
+          </div>
+          <div class="cred-row" onclick="fillCreds('teller01','Tell@789','Teller')">
+            <span class="cred-role">Teller</span>
+            <span class="cred-val">teller01 / Tell@789</span>
+            <button class="cred-use" onclick="event.stopPropagation();fillCreds('teller01','Tell@789','Teller')">Use</button>
+          </div>
+        </div>
+
+        <!-- Alerts -->
+        <div class="alert alert-error" id="errMsg">❌ Invalid credentials or wrong role selected.</div>
+        <div class="alert alert-success" id="successMsg">✓ Authenticated! Loading your dashboard…</div>
+
+        <!-- Form -->
         <div class="field">
-          <label>Employee ID / Username</label>
+          <label for="username">Employee ID / Username</label>
           <div class="input-wrap">
             <span class="input-icon">👤</span>
-            <input type="text" placeholder="e.g. EMP001 or admin" autocomplete="username"/>
+            <input class="inp" id="username" type="text" placeholder="e.g. EMP001 or admin" autocomplete="username"/>
           </div>
         </div>
 
         <div class="field">
           <div class="field-row">
-            <label>Password</label>
-            <a href="#" class="forgot">Forgot password?</a>
+            <label for="password">Password</label>
+            <button class="forgot" onclick="handleForgot()">Forgot password?</button>
           </div>
           <div class="input-wrap">
             <span class="input-icon">🔒</span>
-            <input type="password" placeholder="Enter your password" autocomplete="current-password"/>
+            <input class="inp" id="password" type="password" placeholder="Enter your password" autocomplete="current-password"/>
           </div>
         </div>
 
@@ -444,89 +598,329 @@
           <label for="remember">Keep me signed in for 8 hours</label>
         </div>
 
-        <button type="submit" class="btn-login">Sign In to Dashboard →</button>
-      </form>
+        <button class="btn-login" id="loginBtn" onclick="handleLogin()">Sign In to Dashboard →</button>
 
-      <div class="divider"><span>system status</span></div>
-
-      <div class="status-row">
-        <div class="status-pill"><div class="dot dot-green"></div>Core Services</div>
-        <div class="status-pill"><div class="dot dot-green"></div>Database</div>
-        <div class="status-pill"><div class="dot dot-gold"></div>v2.0.1</div>
+        <div class="divider"><span>system status</span></div>
+        <div class="status-row">
+          <div class="status-pill"><div class="dot dot-green"></div>Core Services</div>
+          <div class="status-pill"><div class="dot dot-green"></div>Database</div>
+          <div class="status-pill"><div class="dot dot-gold"></div>v2.0.1</div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-left">© 2024 BankingERP · Built with Spring Boot & MySQL · <a href="https://github.com/alok8412/BankingERP" style="color:var(--gold-lt);text-decoration:none;">github.com/alok8412/BankingERP</a></div>
-    <div class="footer-right">
-      <a href="#">Documentation</a>
-      <a href="#">API Reference</a>
-      <a href="#">Support</a>
-      <a href="#">Changelog</a>
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-left">
+        © 2024 BankingERP · Built with Spring Boot &amp; MySQL ·
+        <a href="https://github.com/alok8412/BankingERP" target="_blank" rel="noopener" style="color:var(--gold-lt);text-decoration:none;">github.com/alok8412/BankingERP</a>
+      </div>
+      <div class="footer-right">
+        <a href="#">Documentation</a>
+        <a href="#">API Reference</a>
+        <a href="#">Support</a>
+        <a href="#">Changelog</a>
+      </div>
+    </footer>
+
+  </div><!-- /.shell -->
+</div><!-- /#loginView -->
+
+
+<!-- ════════════════════════════════════════════
+     DASHBOARD VIEW
+════════════════════════════════════════════ -->
+<div id="dashView">
+  <div class="dash-shell">
+
+    <!-- Sticky Header -->
+    <div class="dash-header">
+      <div class="dash-logo">
+        <div class="dash-logo-icon">🏦</div>
+        <div>
+          <div class="dash-logo-text">BankingERP</div>
+        </div>
+      </div>
+      <div class="dash-user-info">
+        <span id="dashUserName" style="font-size:.85rem;color:var(--mist);"></span>
+        <span class="dash-role-badge" id="dashRoleBadge">Admin</span>
+        <button class="btn-logout" onclick="handleLogout()">⬅ Sign Out</button>
+      </div>
     </div>
-  </footer>
 
-</div>
+    <!-- Body -->
+    <div class="dash-body">
 
-<!-- LIVE TICKER -->
+      <!-- Welcome -->
+      <div class="dash-welcome">
+        <div class="dash-welcome-name" id="dashWelcome">Welcome back!</div>
+        <div class="dash-welcome-meta" id="dashDate"></div>
+      </div>
+
+      <!-- KPI Cards -->
+      <div class="section-label">Today's Overview</div>
+      <div class="kpi-grid" id="kpiGrid"></div>
+
+      <!-- Module Grid -->
+      <div class="section-label" id="moduleGridLabel">Quick Access Modules</div>
+      <div class="module-grid" id="moduleGrid"></div>
+
+      <!-- Activity + Quick Actions -->
+      <div class="two-col">
+        <div class="dash-panel">
+          <div class="dp-title">Recent Activity</div>
+          <div id="activityList"></div>
+        </div>
+        <div class="dash-panel">
+          <div class="dp-title">Quick Actions</div>
+          <div id="quickActions"></div>
+        </div>
+      </div>
+
+    </div><!-- /.dash-body -->
+  </div><!-- /.dash-shell -->
+</div><!-- /#dashView -->
+
+
+<!-- LIVE TICKER (always visible) -->
 <div class="ticker-bar">
   <div class="ticker-track" id="ticker"></div>
 </div>
 
+
+<!-- ════════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════ -->
 <script>
-  // Role tab switcher
-  function setRole(el) {
-    document.querySelectorAll('.role-tab').forEach(t => t.classList.remove('active'));
-    el.classList.add('active');
-  }
+/* ── USER STORE ── */
+const USERS = {
+  admin:    { pass: 'Admin@123', role: 'Admin',   name: 'Admin User',    empId: 'EMP001' },
+  manager:  { pass: 'Mgr@456',  role: 'Manager', name: 'Branch Manager',empId: 'EMP042' },
+  teller01: { pass: 'Tell@789', role: 'Teller',  name: 'Teller 01',     empId: 'EMP107' },
+};
 
-  // Login handler (demo)
-  function handleLogin(e) {
-    e.preventDefault();
-    const btn = e.target.querySelector('.btn-login');
-    btn.textContent = 'Authenticating…';
-    btn.style.opacity = '.7';
-    setTimeout(() => {
-      btn.textContent = '✓ Redirecting to Dashboard';
-      btn.style.background = 'linear-gradient(135deg, #1a9e6e, #14b97e)';
-      btn.style.boxShadow = '0 6px 24px rgba(26,158,110,.5)';
-      setTimeout(() => {
-        btn.textContent = 'Sign In to Dashboard →';
-        btn.style.background = '';
-        btn.style.boxShadow = '';
-        btn.style.opacity = '1';
-      }, 2000);
-    }, 1400);
-  }
+/* ── MODULES ── */
+const ALL_MODULES = [
+  { icon: '👥', name: 'Customer KYC',   desc: 'Profiles, documents & verification'  },
+  { icon: '🏦', name: 'Accounts',       desc: 'Savings, current & FD accounts'       },
+  { icon: '💸', name: 'Transactions',   desc: 'Deposits, withdrawals & transfers'    },
+  { icon: '📋', name: 'Loans & EMI',   desc: 'Applications, disbursals & repayments'},
+  { icon: '👔', name: 'HR & Payroll',  desc: 'Staff records & salary processing'    },
+  { icon: '📊', name: 'Reports',        desc: 'Financial, MIS & compliance reports'  },
+  { icon: '🔍', name: 'Audit Trail',   desc: 'Activity logs & change history'       },
+  { icon: '🔔', name: 'Notifications', desc: 'Alerts, tasks & system messages'      },
+];
+const ROLE_MODULES = {
+  Admin:   ALL_MODULES,
+  Manager: ALL_MODULES.slice(0, 6),
+  Teller:  [ALL_MODULES[0], ALL_MODULES[1], ALL_MODULES[2], ALL_MODULES[7]],
+};
 
-  // Ticker data
-  const tickerData = [
-    { name: 'Total Deposits',    val: '₹84.2 Cr',  chg: '+2.1%',  up: true },
-    { name: 'Active Loans',      val: '1,248',      chg: '+14',     up: true },
-    { name: 'Today Txns',        val: '6,741',      chg: '+309',    up: true },
-    { name: 'Pending KYC',       val: '38',         chg: '-5',      up: false },
-    { name: 'EMI Collection',    val: '₹1.3 Cr',   chg: '+0.4%',  up: true },
-    { name: 'NPA Ratio',         val: '1.84%',      chg: '-0.02%', up: false },
-    { name: 'New Accounts',      val: '127',        chg: '+23',     up: true },
-    { name: 'Staff On Duty',     val: '84',         chg: '0',       up: true },
-    { name: 'Branch Uptime',     val: '99.97%',     chg: 'Stable',  up: true },
-    { name: 'Cash Reserve',      val: '₹22.6 Cr',  chg: '+1.2%',  up: true },
+/* ── ROLE STATE ── */
+let selectedRole = 'Admin';
+
+/* ── ROLE TABS ── */
+function setRole(el, role) {
+  document.querySelectorAll('.role-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  selectedRole = role;
+  clearAlerts();
+}
+
+/* ── AUTOFILL ── */
+function fillCreds(user, pass, role) {
+  document.getElementById('username').value = user;
+  document.getElementById('password').value = pass;
+  document.querySelectorAll('.role-tab').forEach(t => {
+    if (t.textContent.trim() === role) { t.classList.add('active'); selectedRole = role; }
+    else t.classList.remove('active');
+  });
+  clearAlerts();
+  document.getElementById('username').classList.remove('err');
+  document.getElementById('password').classList.remove('err');
+}
+
+/* ── ALERTS ── */
+function clearAlerts() {
+  document.getElementById('errMsg').classList.remove('show');
+  document.getElementById('successMsg').classList.remove('show');
+}
+
+/* ── LOGIN ── */
+function handleLogin() {
+  clearAlerts();
+  const uEl  = document.getElementById('username');
+  const pEl  = document.getElementById('password');
+  const btn  = document.getElementById('loginBtn');
+  const user = uEl.value.trim().toLowerCase();
+  const pass = pEl.value;
+
+  uEl.classList.remove('err');
+  pEl.classList.remove('err');
+
+  if (!user) { uEl.classList.add('err'); uEl.focus(); return; }
+  if (!pass) { pEl.classList.add('err'); pEl.focus(); return; }
+
+  btn.disabled     = true;
+  btn.textContent  = 'Authenticating…';
+
+  setTimeout(() => {
+    const record = USERS[user];
+    if (!record || record.pass !== pass || record.role !== selectedRole) {
+      btn.disabled    = false;
+      btn.textContent = 'Sign In to Dashboard →';
+      uEl.classList.add('err');
+      pEl.classList.add('err');
+      pEl.value = '';
+      document.getElementById('errMsg').classList.add('show');
+      pEl.focus();
+      return;
+    }
+    document.getElementById('successMsg').classList.add('show');
+    btn.textContent = '✓ Redirecting to Dashboard…';
+    btn.style.background = 'linear-gradient(135deg,#1a9e6e,#14b97e)';
+    btn.style.boxShadow  = '0 6px 24px rgba(26,158,110,.5)';
+    setTimeout(() => showDashboard(record), 900);
+  }, 1100);
+}
+
+/* ── ENTER KEY ── */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && document.getElementById('loginView').style.display !== 'none') {
+    handleLogin();
+  }
+});
+
+/* ── FORGOT PASSWORD ── */
+function handleForgot() {
+  alert('Password Reset\n\nContact your system administrator with your Employee ID.\nOr email: support@bankingerp.internal');
+}
+
+/* ── SHOW DASHBOARD ── */
+function showDashboard(record) {
+  document.getElementById('loginView').style.display = 'none';
+  document.getElementById('dashView').style.display  = 'block';
+
+  /* welcome */
+  document.getElementById('dashWelcome').textContent  = 'Welcome back, ' + record.name + ' 👋';
+  document.getElementById('dashUserName').textContent = record.empId;
+  const badge = document.getElementById('dashRoleBadge');
+  badge.textContent = record.role;
+  badge.className   = 'dash-role-badge role-' + record.role.toLowerCase();
+
+  const now = new Date();
+  document.getElementById('dashDate').textContent =
+    now.toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) +
+    '  ·  ' +
+    now.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+
+  /* KPIs */
+  const KPIs_ALL = [
+    { val: '₹84.2 Cr', label: 'Total Deposits',    change: '+2.1% today',  up: true  },
+    { val: '1,248',     label: 'Active Loans',       change: '+14 new',      up: true  },
+    { val: '6,741',     label: "Today's Transactions",change: '+309 vs yesterday', up: true },
+    { val: '38',        label: 'Pending KYC',        change: '−5 cleared',   up: false },
+    { val: '₹1.3 Cr',  label: 'EMI Collection',     change: '+0.4%',        up: true  },
+    { val: '1.84%',     label: 'NPA Ratio',          change: '−0.02%',       up: false },
+    { val: '127',       label: 'New Accounts',       change: '+23 today',    up: true  },
+    { val: '84',        label: 'Staff On Duty',      change: 'Stable',       up: true  },
   ];
+  const KPIs_MANAGER = KPIs_ALL.slice(0, 6);
+  const KPIs_TELLER  = [KPIs_ALL[2], KPIs_ALL[0], KPIs_ALL[6], KPIs_ALL[3]];
+  const kpis = record.role === 'Admin' ? KPIs_ALL : record.role === 'Manager' ? KPIs_MANAGER : KPIs_TELLER;
 
-  function buildTicker() {
-    const track = document.getElementById('ticker');
-    const doubled = [...tickerData, ...tickerData];
-    track.innerHTML = doubled.map(d => `
-      <div class="ticker-item">
-        <span class="name">${d.name}</span>
-        <span>${d.val}</span>
-        <span class="${d.up ? 'up' : 'down'}">${d.chg}</span>
+  document.getElementById('kpiGrid').innerHTML = kpis.map(k => `
+    <div class="kpi-card">
+      <div class="kpi-val">${k.val}</div>
+      <div class="kpi-label">${k.label}</div>
+      <div class="kpi-change ${k.up ? 'kpi-up' : 'kpi-down'}">${k.change}</div>
+    </div>`).join('');
+
+  /* Modules */
+  document.getElementById('moduleGrid').innerHTML = ROLE_MODULES[record.role].map(m => `
+    <div class="module-card">
+      <div class="module-icon">${m.icon}</div>
+      <div class="module-name">${m.name}</div>
+      <div class="module-desc">${m.desc}</div>
+    </div>`).join('');
+
+  /* Activity */
+  const ACTIVITY_ALL = [
+    { dot: '#1a9e6e', text: 'New account opened — <b>Rajesh Kumar</b> (SB-09124)', time: '2 min ago' },
+    { dot: '#c9a84c', text: 'KYC submitted for <b>Priya Sharma</b> — pending review', time: '11 min ago' },
+    { dot: '#2452c9', text: 'Loan disbursed ₹4.2 L to <b>Amit Verma</b>', time: '34 min ago' },
+    { dot: '#d94f4f', text: 'Failed login attempt — <b>EMP205</b> (3 tries)', time: '1 hr ago' },
+    { dot: '#1a9e6e', text: 'EMI collected — ₹18,500 from <b>Sunita Rao</b>', time: '1 hr ago' },
+    { dot: '#2452c9', text: 'Payroll processed for <b>82 staff members</b>', time: '2 hr ago' },
+    { dot: '#c9a84c', text: 'Compliance report generated — <b>Q2 FY25</b>', time: '3 hr ago' },
+  ];
+  const acts = record.role === 'Teller' ? ACTIVITY_ALL.slice(0, 4) : ACTIVITY_ALL;
+  document.getElementById('activityList').innerHTML = acts.map(a => `
+    <div class="activity-item">
+      <div class="a-dot" style="background:${a.dot}"></div>
+      <div>
+        <div class="a-text">${a.text}</div>
+        <div class="a-time">${a.time}</div>
       </div>
-    `).join('');
-  }
-  buildTicker();
+    </div>`).join('');
+
+  /* Quick Actions */
+  const QA_ALL = [
+    { icon: '➕', label: 'Open New Account' },
+    { icon: '💳', label: 'Process Transaction' },
+    { icon: '📄', label: 'New Loan Application' },
+    { icon: '👤', label: 'Register New Customer' },
+    { icon: '📊', label: 'Generate MIS Report'  },
+    { icon: '📬', label: 'Send Notification'    },
+  ];
+  const QA_MANAGER = QA_ALL.slice(0, 4);
+  const QA_TELLER  = [QA_ALL[1], QA_ALL[0], QA_ALL[3]];
+  const qas = record.role === 'Admin' ? QA_ALL : record.role === 'Manager' ? QA_MANAGER : QA_TELLER;
+  document.getElementById('quickActions').innerHTML = qas.map(q => `
+    <button class="qa-btn" onclick="alert('Feature coming soon: ${q.label}')">
+      <span class="qa-icon">${q.icon}</span> ${q.label}
+    </button>`).join('');
+}
+
+/* ── LOGOUT ── */
+function handleLogout() {
+  document.getElementById('dashView').style.display  = 'none';
+  document.getElementById('loginView').style.display = 'block';
+  const btn = document.getElementById('loginBtn');
+  btn.textContent      = 'Sign In to Dashboard →';
+  btn.style.background = '';
+  btn.style.boxShadow  = '';
+  btn.disabled         = false;
+  document.getElementById('username').value = '';
+  document.getElementById('password').value = '';
+  clearAlerts();
+  document.getElementById('username').classList.remove('err');
+  document.getElementById('password').classList.remove('err');
+}
+
+/* ── TICKER ── */
+const TICKER_DATA = [
+  { name: 'Total Deposits',  val: '₹84.2 Cr', chg: '+2.1%',  up: true  },
+  { name: 'Active Loans',    val: '1,248',     chg: '+14',    up: true  },
+  { name: 'Today Txns',      val: '6,741',     chg: '+309',   up: true  },
+  { name: 'Pending KYC',     val: '38',        chg: '−5',     up: false },
+  { name: 'EMI Collection',  val: '₹1.3 Cr',  chg: '+0.4%',  up: true  },
+  { name: 'NPA Ratio',       val: '1.84%',     chg: '−0.02%', up: false },
+  { name: 'New Accounts',    val: '127',       chg: '+23',    up: true  },
+  { name: 'Staff On Duty',   val: '84',        chg: '0',      up: true  },
+  { name: 'Branch Uptime',   val: '99.97%',    chg: 'Stable', up: true  },
+  { name: 'Cash Reserve',    val: '₹22.6 Cr', chg: '+1.2%',  up: true  },
+];
+(function buildTicker() {
+  const track = document.getElementById('ticker');
+  const doubled = [...TICKER_DATA, ...TICKER_DATA];
+  track.innerHTML = doubled.map(d => `
+    <div class="ticker-item">
+      <span class="t-name">${d.name}</span>
+      <span>${d.val}</span>
+      <span class="${d.up ? 'up' : 'down'}">${d.chg}</span>
+    </div>`).join('');
+})();
 </script>
 </body>
 </html>
